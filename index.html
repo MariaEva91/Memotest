@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div >
+        <div class="menu">
+             <div class="background">
+            <img src="imagenes/fondo.jpg" alt="">
+            </div>-->
+             <div class="main-container" id="main-container">
+                    <h1>Memotest</h1>
+                    <p>Hola! <span>👋</span> Vamos a jugar al Memotest</p> <p>Pero antes de empezar...</p>   <p>Cuál es tu nombre<i class="em em-question"></i></p>
+                    <input id="inputNombre" class="input" placeholder="Natalia" type="text">
+                    <p>Con qué dificultad te gustaria jugar?</p>
+                    <div class="botones">
+                    <button id="botonFacil">FÁCIL</button>
+                    <button id="botonIntermedio">INTERMEDIO</button>
+                    <button id="botonExperto">EXPERTO</button>
+                 </div>
+                 <div id="botonError">
+                    <p class="hidden" >UPPS...El nombre es requerido.</p>
+                 </div>
+            </div>
+        </div>
+          <div class="board hidden" id="board">
+              <div class="header">
+                <h1>Memotest</h1>
+                <p id="saludarJugador">Hola</p>
+                 <p>Encontra todos los pares en menos de <span id="cantidadIntentos"></span> intentos</p>
+                <p>Nivel</p>
+                <p id="nivelElegido"></p>
+             </div>
+             <div class="imagenes">
+                 <div class="carta cardsImg">
+                  <img id="1" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="" >
+                </div>
+                  <div class="carta cardsImg">
+                 <img  id="2" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                <div class="carta cardsImg">
+                 <img id="3" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                 
+                
+                 <div class="carta cardsImg">
+                  <img  id="4" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                <div class="carta cardsImg">
+                 <img id="5" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                <div class="carta cardsImg">
+                 <img id="6" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                
+                <div class="carta cardsImg">
+                  <img id="7" class="tapadas"  src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                <div class="carta cardsImg">
+                 <img id="8" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                <div class="carta cardsImg">
+                 <img id="9" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                
+                <div class="carta cardsImg">
+                 <img id="10" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                <div class="carta cardsImg">
+                 <img  id="11" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+                <div class="carta cardsImg">
+                 <img id="12" class="tapadas" src="imagenes/tapada.jpg" alt="" data-cartas="">
+                </div>
+
+            </div>
+             <button class="attempts" >Intentos: <span id="intentos"></span></button>
+
+          </div>
+
+          <div class="ranking hidden">
+              <div class="win">
+              <p>GANASTE<span>🎉</span> ! Con <span id="intentosGanadores"></span> intentos.</p>
+              <p>Ya podes volver a jugar</p>
+             </div>
+             <button class="play" id="volverAjugar">VOLVER A JUGAR</button>
+             <div class="table">
+                 <div class="indicadores">
+                     <p>NOMBRE</p>
+                     <p>NIVEL</p>
+                     <p>INTENTOS</p>
+                 </div>
+                 <div class="valores" id="rankingJugadores"></div>
+                 
+             </div>
+            </div>
+            <div class="lose hidden" >
+                <div>
+               <p>Lo lamento, PERDISTE</p></div>
+                <p>Pero podes volver a jugar</p>
+                <button class="play"id="perdiste">VOLVER A JUGAR</button>
+            </div>
+            
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+    <script src="js/index.js"></script>
+</body>
+</html>
