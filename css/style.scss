@@ -127,7 +127,7 @@ button:hover{
 .girar{
     transform-style: preserve-3d;
     transition: 0.9s;
-    transform: rotate(360deg);
+    transform: rotateY(180deg);
 }
 .attempts{
     border: solid;
@@ -151,14 +151,14 @@ button:hover{
     position: absolute;
     z-index: 1;
     border: solid;
-    width: 750px;
+    width: 550px;
     height: auto;
      border: solid;
     border-radius: 5%;
     background-color: bisque;
     padding: 15px;
      text-align: center;
-     margin-left: 35%;
+     margin-left: 25%;
      margin-top: 2%;
      font-family: $fuente;
      font-size: 15px;
@@ -185,7 +185,7 @@ button:hover{
     background-color: bisque;
     padding: 15px;
      text-align: center;
-     margin-left: 55%;
+     margin-left: 25%;
      margin-top: 2%;
      font-family: $fuente;
      font-size: 15px;
@@ -204,6 +204,7 @@ button:hover{
 .table{
     border: solid;
     margin-left: 10%;
+    border-bottom: solid;
 
    .indicadores{
        display: flex;
@@ -214,8 +215,21 @@ button:hover{
        height: 100%;
    }
    .valores{
-       display: flex;
-       justify-content: space-around;
+     border-bottom: solid;
+     display: flex;
+     justify-content: space-around;
+    .nombres{
+        display: flex;
+        flex-direction: column;
+    }
+    .niveles{
+        display: flex;
+        flex-direction: column;
+    }
+    .intentos{
+        display: flex;
+        flex-direction: column;
+    }
    }   
 }
 
@@ -267,9 +281,7 @@ button:hover{
      margin-top: 8px;
 
     }
-}
-
-//ranking. ganaste y perdiste
+    //ranking. ganaste y perdiste
 
 .lose{
     width: 150px;
@@ -279,16 +291,18 @@ button:hover{
 }
 
 .ranking{
-    width: 150px;
+    width: 170px;
     height: auto;
     margin-left: 25%;
     margin-top: 10%;
 }
 .table{
     margin-left: 0%;
-    width: 160px;
+    width: 180px;
     height: auto;
     margin-right: 10%;
+    padding-right: 3px;
+    padding-left: 3px;
 
    .indicadores{
        display: flex;
@@ -305,3 +319,5 @@ button:hover{
    }
     
 }
+}
+

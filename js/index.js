@@ -15,7 +15,9 @@ var nombreJugador = $('#inputNombre').val();
      $('#botonError p').removeClass('hidden');
      // funcioncita que me muestre el cartel de error por determinado tiempo
      setTimeout(function(){
-        $('#botonError ').addClass('hidden')},3000)
+        $('#botonError p').addClass('hidden')
+        $('#botonError').removeClass('appear')
+    },3000)
      }
     else{
        // console.log(nombreJugador);
@@ -120,8 +122,10 @@ $('.cardsImg').on('click',function(){
             $('#intentos').html('<span>' + intentos + '</span>')
             var that = this
             setTimeout(function(){
-                $('#'+ primerClick.id).attr('src',"imagenes/tapada.jpg")
-               $(that).children().attr('src', "imagenes/tapada.jpg") },2000)
+                $('#'+ primerClick.id).attr('src',"imagenes/tapada.jpg").removeClass('girar');
+               $(that).children().attr('src', "imagenes/tapada.jpg").removeClass('girar') 
+             },2000)
+
         }
      clicks = 0;
     }
@@ -155,14 +159,16 @@ $('.cardsImg').on('click',function(){
 
                 for(var i = 0; i < ranking; i++){
                     console.log(ranking);
-                    var datos = ` <div>${nombreJugador}</div>
-                    <div>${nivel}</div>
-                    <div>${intentos}</div>`;
+                    var datos = 
+                    ` <div class="valores">
+                    <div class="nombres"><p>${datosGuardados[i].name}</p></div><br>
+                    <div class="niveles"><p>${datosGuardados[i].level}</p></div><br>
+                    <div class="intentos"><p>${datosGuardados[i].attempts}</p></div>
+                    </div>`;
     
                     $('#rankingJugadores').append(datos);
 
                 }
-
               
                 
 
@@ -186,7 +192,9 @@ $('#botonIntermedio').on('click', function(){
    $('#botonError').addClass('appear');
    $('#botonError p').removeClass('hidden');
    setTimeout(function(){
-    $('#botonError ').addClass('hidden')},3000)
+    $('#botonError p').addClass('hidden')
+    $('#botonError').removeClass('appear')
+},3000)
  }
 
    else{
@@ -283,8 +291,9 @@ $('.cardsImg').on('click',function(){
            $('#intentos').html('<span>' + intentos + '</span>')
            var that = this
            setTimeout(function(){
-               $('#'+ primerClick.id).attr('src',"imagenes/tapada.jpg")
-              $(that).children().attr('src', "imagenes/tapada.jpg") },2000)
+               $('#'+ primerClick.id).attr('src',"imagenes/tapada.jpg").removeClass('girar');
+              $(that).children().attr('src', "imagenes/tapada.jpg").removeClass('girar')
+             },2000)
           }
       clicks = 0;
      }
@@ -317,14 +326,17 @@ $('.cardsImg').on('click',function(){
               };
 
               for(var i = 0; i < ranking; i++){
-                  console.log(ranking);
-                  var datos = ` <div>${nombreJugador}</div>
-                  <div>${nivel}</div>
-                  <div>${intentos}</div>`;
-  
-                  $('#rankingJugadores').append(datos);
+                console.log(ranking);
+                var datos = 
+                ` <div class="valores">
+                <div class="nombres"><p>${datosGuardados[i].name}</p></div><br>
+                <div class="niveles"><p>${datosGuardados[i].level}</p></div><br>
+                <div class="intentos"><p>${datosGuardados[i].attempts}</p></div>
+                </div>`;
 
-              }
+                $('#rankingJugadores').append(datos);
+
+            }
       }   
     else if(pares != 6 && intentos > 12){
         console.log('perdiste');
@@ -345,7 +357,10 @@ $('#botonExperto').on('click',function(){
     $('#botonError').addClass('appear');
     $('#botonError p').removeClass('hidden');
     setTimeout(function(){
-        $('#botonError ').addClass('hidden')},3000)
+        $('#botonError p').addClass('hidden')
+        $('#botonError').removeClass('appear')
+    },3000)
+        
         }
     else{
         console.log(nombreJugador);
@@ -440,8 +455,9 @@ $('#botonExperto').on('click',function(){
             $('#intentos').html('<span>' + intentos + '</span>')
             var that = this
             setTimeout(function(){
-                $('#'+ primerClick.id).attr('src',"imagenes/tapada.jpg")
-                $(that).children().attr('src', "imagenes/tapada.jpg") },2000)
+                $('#'+ primerClick.id).attr('src',"imagenes/tapada.jpg").removeClass('girar');
+                $(that).children().attr('src', "imagenes/tapada.jpg").removeClass('girar')
+            },2000)
              }
             
         clicks = 0;
@@ -463,7 +479,7 @@ $('#botonExperto').on('click',function(){
                       attempts: intentos
                   }
                   if(datosGuardados == null){
-                      var datosGuardados = [];
+                    datosGuardados = [];
                   }
                   datosGuardados.push(jugadores);
               
@@ -476,14 +492,17 @@ $('#botonExperto').on('click',function(){
                   };
   
                   for(var i = 0; i < ranking; i++){
-                      console.log(ranking);
-                      var datos = ` <div>${nombreJugador}</div>
-                      <div>${nivel}</div>
-                      <div>${intentos}</div>`;
-      
-                      $('#rankingJugadores').append(datos);
-  
-                  }
+                    console.log(ranking);
+                    var datos = 
+                    ` <div class="valores">
+                    <div class="nombres"><p>${datosGuardados[i].name}</p></div><br>
+                    <div class="niveles"><p>${datosGuardados[i].level}</p></div><br>
+                    <div class="intentos"><p>${datosGuardados[i].attempts}</p></div>
+                    </div>`;
+    
+                    $('#rankingJugadores').append(datos);
+
+                }
         }
         else if(pares != 6 && intentos > 9){
             console.log('perdiste');
