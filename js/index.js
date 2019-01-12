@@ -1,34 +1,30 @@
 
-//Intro: pedir nombre y validarlo. Sino introduce nombre, tira cartel de error
+//login and name validation-------------------
 
-var nombreJugador = $('#inputNombre').val();
-
-//nivel facil
+//easy level----------------------------------
 
 $('#botonFacil').on('click',function(){
-    
-    var nivel = 'facil';
-    console.log(nivel);
-var nombreJugador = $('#inputNombre').val();
+    var nombreJugador = $('#inputNombre').val();
      if( nombreJugador == ''){
         $('#botonError').addClass('appear');
-     $('#botonError p').removeClass('hidden');
-     // funcioncita que me muestre el cartel de error por determinado tiempo
+        $('#botonError p').removeClass('hidden');
+     // name validation function
      setTimeout(function(){
         $('#botonError p').addClass('hidden')
         $('#botonError').removeClass('appear')
     },3000)
      }
     else{
-       // console.log(nombreJugador);
+        var nivel = 'facil';
+        var nombreJugador = $('#inputNombre').val();
         $('#saludarJugador').append('<span> ' + nombreJugador + '</span>');
-        //funcion para ocultar cartel de intro y hacer aparecer el tablero
+        //hide login modal . //Appear main board
         $('#main-container').addClass('hidden');
        $('#board').removeClass('hidden');
        $('#cantidadIntentos').html('18');
        $('#nivelElegido').html('FACIL');
     }
-    //el array de las cartas
+    //cards Array------------------------------
 
     var arr = ["imagenes/alce.jpg",
     "imagenes/epelante.jpg",
@@ -44,7 +40,7 @@ var nombreJugador = $('#inputNombre').val();
     "imagenes/unichancho.jpg"
     ];
 
- //Funcion ramdom para reordenar las cartas
+    //ramdom function----------------------------------
 
     function shuffle(arr) {
         var j
@@ -61,9 +57,8 @@ var nombreJugador = $('#inputNombre').val();
 
     shuffle(arr)
 
- //Cargar las cartas dadas vueltas, y que al hacer click se me muestren y giren.
+ //pushing cards and validation
     
-
     var imgsLength = $('.tapadas').length
     for (var i = 0; i < imgsLength; i++) {
     $('.tapadas').eq(i).attr('data-cartas', arr[i])
@@ -72,31 +67,28 @@ var nombreJugador = $('#inputNombre').val();
     $('.tapadas').on('click', function() {
     var visible = $(this).attr('data-cartas')
     $(this).attr('src', visible)
-    //agregar clase para que gire.
+    //add animation css
     $(this).addClass('girar');
     })
 
-//Comparar las cartas al hacerles click
+//comparing cards
 
 var clicks = 0;
 var primerClick
 var intentos = 0;
 var pares = 0;
 
-//funcion para volver a jugar
+//play again button
 
 $('#volverAjugar').on('click',function(){
-    console.log('11');
     location.reload();
 });
 $('#perdiste').on('click',function(){
-    console.log('11');
-    location.reload();
+     location.reload();
 });
 
 $('.cardsImg').on('click',function(){
     clicks = clicks + 1;
-
     if(clicks == 1){
         var id = $(this).children().attr('id');
         var img = $(this).children().attr('data-cartas')
@@ -107,17 +99,12 @@ $('.cardsImg').on('click',function(){
       
     }  else{
             if (primerClick.img == $(this).children().attr('data-cartas') && primerClick.id != $(this).children().attr('id')) {
-           // console.log('iguales')
             $('#'+ primerClick.id).addClass('filter');
             $(this).addClass('filter');
             intentos = intentos + 1;
             $('#intentos').html('<span>' + intentos + '</span>')
-          //  console.log('son la misma carta');
            pares = pares + 1
-        //   console.log(pares)
         } else {
-           // console.log('distintas')
-            console.log('son dos cartas distintas')
             intentos = intentos + 1;
             $('#intentos').html('<span>' + intentos + '</span>')
             var that = this
@@ -129,17 +116,15 @@ $('.cardsImg').on('click',function(){
         }
      clicks = 0;
     }
-    //nivel facil. Para decir si ganaste o perdiste
+    //if you won/lost--------------------------------
 
     if( pares == 6 && intentos < 19){
-       // console.log('ganaste')
         $('.ranking').removeClass('hidden');
         $('#board').addClass('opacity');
         $('#intentosGanadores').html(intentos)
-        //guardar partida en ranking(local storage)
+        //setting and pushing ranking
          var datosGuardados = JSON.parse(localStorage.getItem('jugadores'));
-         
-            var jugadores ={
+          var jugadores ={
                     name: nombreJugador,
                     level:nivel,
                     attempts: intentos
@@ -150,31 +135,22 @@ $('.cardsImg').on('click',function(){
                 datosGuardados.push(jugadores);
             
              localStorage.setItem('jugadores', JSON.stringify(datosGuardados));
-                console.log(datosGuardados);
-
-                var ranking = datosGuardados.length
+               var ranking = datosGuardados.length
                 if(ranking > 3){
                     ranking = 3
                 };
 
                 for(var i = 0; i < ranking; i++){
-                    console.log(ranking);
                     var datos = 
                     ` <div class="valores">
                     <div class="nombres"><p>${datosGuardados[i].name}</p></div><br>
                     <div class="niveles"><p>${datosGuardados[i].level}</p></div><br>
                     <div class="intentos"><p>${datosGuardados[i].attempts}</p></div>
                     </div>`;
-    
                     $('#rankingJugadores').append(datos);
-
                 }
-              
-                
-
         }   
-            else if(pares != 6 && intentos > 18){
-             console.log('perdiste')
+         else if(pares != 6 && intentos > 18){
              $('#board').addClass('opacity');
              $('.lose').removeClass('hidden');
          } 
@@ -182,29 +158,28 @@ $('.cardsImg').on('click',function(){
 
     });
 
-//nivel intermedio
+//Intermediate level
 
 $('#botonIntermedio').on('click', function(){
-    var nivel = 'intermedio';
-    console.log(nivel);
     var nombreJugador = $('#inputNombre').val();
     if( nombreJugador == ''){
-   $('#botonError').addClass('appear');
-   $('#botonError p').removeClass('hidden');
-   setTimeout(function(){
-    $('#botonError p').addClass('hidden')
-    $('#botonError').removeClass('appear')
-},3000)
- }
-
-   else{
-       $('#saludarJugador').append('<span> ' + nombreJugador + '</span>');
-       $('#main-container').addClass('hidden');
-       $('#board').removeClass('hidden');
-       $('#cantidadIntentos').html('12');
-       $('#nivelElegido').html('INTERMEDIO');
-   }
-   //el array de las cartas
+    $('#botonError').addClass('appear');
+    $('#botonError p').removeClass('hidden');
+    setTimeout(function(){
+        $('#botonError p').addClass('hidden')
+        $('#botonError').removeClass('appear')
+    },3000)
+    }
+    else{
+        var nivel = 'intermedio';
+        var nombreJugador = $('#inputNombre').val();
+        $('#saludarJugador').append('<span> ' + nombreJugador + '</span>');
+        $('#main-container').addClass('hidden');
+        $('#board').removeClass('hidden');
+        $('#cantidadIntentos').html('12');
+        $('#nivelElegido').html('INTERMEDIO');
+    }
+   //cards Array------------------------------
 
    var arr = ["imagenes/alce.jpg",
    "imagenes/epelante.jpg",
@@ -220,7 +195,7 @@ $('#botonIntermedio').on('click', function(){
    "imagenes/unichancho.jpg"
    ];
 
-//Funcion ramdom para reordenar las cartas
+//ramdon function
 
    function shuffle(arr) {
        var j
@@ -237,8 +212,7 @@ $('#botonIntermedio').on('click', function(){
 
    shuffle(arr)
 
-//Cargar las cartas dadas vueltas, y que al hacer click se me muestren y giren
-   
+//pushing cards and validation
 
    var imgsLength = $('.tapadas').length
    for (var i = 0; i < imgsLength; i++) {
@@ -247,19 +221,16 @@ $('#botonIntermedio').on('click', function(){
 
    $('.tapadas').on('click', function() {
    var visible = $(this).attr('data-cartas')
-   $(this).attr('src', visible)
-    //agregar clase para que gire.
+   $(this).attr('src', visible);
     $(this).addClass('girar');
    })
 
-//Comparar las cartas al hacerles click
+//comparing cards
 
 $('#volverAjugar').on('click',function(){
-    console.log('11');
     location.reload();
 });
 $('#perdiste').on('click',function(){
-    console.log('11');
     location.reload();
 });
 
@@ -286,7 +257,6 @@ $('.cardsImg').on('click',function(){
            $('#intentos').html('<span>' + intentos + '</span>')
           pares = pares + 1;
        } else {
-           //console.log('son dos cartas distintas')
            intentos = intentos + 1;
            $('#intentos').html('<span>' + intentos + '</span>')
            var that = this
@@ -297,15 +267,14 @@ $('.cardsImg').on('click',function(){
           }
       clicks = 0;
      }
-         //nivel intermedio. Ganar o perder.
+    //if you won/lost
 
     if(pares == 6 && intentos < 13){
-        console.log('ganaste')
         $('.ranking').removeClass('hidden');
         $('#board').addClass('opacity');
-        $('#intentosGanadores').html(intentos)
-          //guardar partida en ranking
-          var datosGuardados = JSON.parse(localStorage.getItem('jugadores'));
+        $('#intentosGanadores').html(intentos);
+         
+        var datosGuardados = JSON.parse(localStorage.getItem('jugadores'));
          
           var jugadores ={
                   name: nombreJugador,
@@ -318,28 +287,22 @@ $('.cardsImg').on('click',function(){
               datosGuardados.push(jugadores);
           
            localStorage.setItem('jugadores', JSON.stringify(datosGuardados));
-              console.log(datosGuardados);
-
-              var ranking = datosGuardados.length
+             var ranking = datosGuardados.length
               if(ranking > 3){
                   ranking = 3
               };
 
               for(var i = 0; i < ranking; i++){
-                console.log(ranking);
                 var datos = 
                 ` <div class="valores">
                 <div class="nombres"><p>${datosGuardados[i].name}</p></div><br>
                 <div class="niveles"><p>${datosGuardados[i].level}</p></div><br>
                 <div class="intentos"><p>${datosGuardados[i].attempts}</p></div>
                 </div>`;
-
                 $('#rankingJugadores').append(datos);
-
             }
       }   
     else if(pares != 6 && intentos > 12){
-        console.log('perdiste');
         $('#board').addClass('opacity');
         $('.lose').removeClass('hidden');
     }
@@ -348,11 +311,9 @@ $('.cardsImg').on('click',function(){
    
 });
 
-//nivel experto
+//expert level-----------------------------------------
 
 $('#botonExperto').on('click',function(){
-    var nivel = 'experto';
-        var nombreJugador = $('#inputNombre').val();
         if( nombreJugador == ''){
     $('#botonError').addClass('appear');
     $('#botonError p').removeClass('hidden');
@@ -363,14 +324,15 @@ $('#botonExperto').on('click',function(){
         
         }
     else{
-        console.log(nombreJugador);
+        var nivel = 'experto';
+        var nombreJugador = $('#inputNombre').val();
         $('#saludarJugador').append('<span> ' + nombreJugador + '</span>');
         $('#main-container').addClass('hidden');
         $('#board').removeClass('hidden');
         $('#cantidadIntentos').html('9');
         $('#nivelElegido').html('EXPERTO');
     }
-    //el array de las cartas
+    //cards array
 
     var arr = ["imagenes/alce.jpg",
     "imagenes/epelante.jpg",
@@ -386,7 +348,7 @@ $('#botonExperto').on('click',function(){
     "imagenes/unichancho.jpg"
     ];
 
-    //Funcion ramdom para reordenar las cartas
+    //ramdon function-------------------------------------
 
     function shuffle(arr) {
         var j
@@ -403,9 +365,8 @@ $('#botonExperto').on('click',function(){
 
     shuffle(arr)
 
-    //Cargar las cartas dadas vueltas, y que al hacer click se me muestren y giren
+    //pushing cards and validation-------------------------
     
-
     var imgsLength = $('.tapadas').length
     for (var i = 0; i < imgsLength; i++) {
     $('.tapadas').eq(i).attr('data-cartas', arr[i])
@@ -414,17 +375,15 @@ $('#botonExperto').on('click',function(){
     $('.tapadas').on('click', function() {
     var visible = $(this).attr('data-cartas')
     $(this).attr('src', visible);
-     //agregar clase para que gire.
      $(this).addClass('girar');
     })
-         //Comparar las cartas al hacerles click
+
+    //comparing cards-------------------------------------
 
     $('#volverAjugar').on('click',function(){
-        console.log('11');
         location.reload();
     });
     $('#perdiste').on('click',function(){
-        console.log('11');
         location.reload();
     }); 
 
@@ -463,52 +422,42 @@ $('#botonExperto').on('click',function(){
         clicks = 0;
             }
 
-     //nivel experto. Ganar o perder.
+     //if you won/lost
     
      if(pares == 6 && intentos < 10){
-            console.log('ganaste')
-            $('.ranking').removeClass('hidden');
-            $('#board').addClass('opacity');
-            $('#intentosGanadores').html(intentos)
-              //guardar partida en ranking
-              var datosGuardados = JSON.parse(localStorage.getItem('jugadores'));
-         
-              var jugadores ={
-                      name: nombreJugador,
-                      level:nivel,
-                      attempts: intentos
-                  }
-                  if(datosGuardados == null){
-                    datosGuardados = [];
+         $('.ranking').removeClass('hidden');
+         $('#board').addClass('opacity');
+        $('#intentosGanadores').html(intentos)
+          var datosGuardados = JSON.parse(localStorage.getItem('jugadores'));
+          var jugadores ={
+                  name: nombreJugador,
+                  level:nivel,
+                  attempts: intentos
+                 }
+                if(datosGuardados == null){
+                 datosGuardados = [];
                   }
                   datosGuardados.push(jugadores);
-              
                localStorage.setItem('jugadores', JSON.stringify(datosGuardados));
-                  console.log(datosGuardados);
-  
-                  var ranking = datosGuardados.length
+                  
+               var ranking = datosGuardados.length
                   if(ranking > 3){
                       ranking = 3
                   };
   
                   for(var i = 0; i < ranking; i++){
-                    console.log(ranking);
                     var datos = 
                     ` <div class="valores">
                     <div class="nombres"><p>${datosGuardados[i].name}</p></div><br>
                     <div class="niveles"><p>${datosGuardados[i].level}</p></div><br>
                     <div class="intentos"><p>${datosGuardados[i].attempts}</p></div>
                     </div>`;
-    
                     $('#rankingJugadores').append(datos);
-
                 }
         }
         else if(pares != 6 && intentos > 9){
-            console.log('perdiste');
             $('#board').addClass('opacity');
             $('.lose').removeClass('hidden');
-        
         }
     
     });

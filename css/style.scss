@@ -77,7 +77,7 @@ button:hover{
     font-size: 12px;
 }
 
-/*Tablero, cartas dadas vuelta*/
+/*Board, cards backside*/
 
 .board{
     width:70%;
@@ -139,7 +139,7 @@ button:hover{
     margin-bottom: 10px;
     margin-top: 8px;
 }
-//cuando las cartas coinciden. agregar esta clase
+//class to identify the same cards finded
 
 .filter {
     filter: grayscale(100%);
@@ -233,7 +233,7 @@ button:hover{
    }   
 }
 
-//version mobile
+// mobile version
 
 @media (max-width: 800px) {
     .background{
@@ -258,7 +258,7 @@ button:hover{
         }
     }
 
-    //tablero mobil
+    // mobil board
 
     .board{
         width: 55%;
@@ -281,7 +281,7 @@ button:hover{
      margin-top: 8px;
 
     }
-    //ranking. ganaste y perdiste
+    // mobile ranking / win and lose modal
 
 .lose{
     width: 150px;
